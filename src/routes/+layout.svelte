@@ -1,0 +1,24 @@
+<svelte:head>
+    <title>Raylights Tools</title> 
+</svelte:head>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/compare-recipes">Compare Recipes</a>
+    <a href="/compare-past-trials">Compare Past Trials</a>
+  </nav>
+  
+  <slot></slot>
+
+
+  <style>
+    a {
+        font-family: arial;
+        padding:8px 15px;
+        text-decoration: none;
+        color:#397ebf
+    }
+    a:hover {
+        color:#000;
+    }
+  </style>
