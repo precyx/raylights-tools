@@ -3,7 +3,7 @@
 </svelte:head>
 
 <nav>
-    <a href="/">Home</a>
+    <a href="/">Start</a>
     <a href="/compare-recipes">Compare Recipes</a>
     <a href="/compare-past-trials">Compare Past Trials</a>
   </nav>

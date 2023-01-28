@@ -27,7 +27,6 @@
  */
 declare module '$env/static/private' {
 	export const NVM_INC: string;
-	export const NVM_RC_VERSION: string;
 	export const MANPATH: string;
 	export const TERM_PROGRAM: string;
 	export const NODE: string;
@@ -36,8 +35,8 @@ declare module '$env/static/private' {
 	export const SHELL: string;
 	export const TERM: string;
 	export const npm_config_metrics_registry: string;
-	export const TMPDIR: string;
 	export const HOMEBREW_REPOSITORY: string;
+	export const TMPDIR: string;
 	export const npm_config_global_prefix: string;
 	export const TERM_PROGRAM_VERSION: string;
 	export const COLOR: string;
@@ -109,7 +108,6 @@ declare module '$env/static/public' {
 declare module '$env/dynamic/private' {
 	export const env: {
 		NVM_INC: string;
-		NVM_RC_VERSION: string;
 		MANPATH: string;
 		TERM_PROGRAM: string;
 		NODE: string;
@@ -118,8 +116,8 @@ declare module '$env/dynamic/private' {
 		SHELL: string;
 		TERM: string;
 		npm_config_metrics_registry: string;
-		TMPDIR: string;
 		HOMEBREW_REPOSITORY: string;
+		TMPDIR: string;
 		npm_config_global_prefix: string;
 		TERM_PROGRAM_VERSION: string;
 		COLOR: string;
