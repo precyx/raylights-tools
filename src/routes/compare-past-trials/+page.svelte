@@ -50,28 +50,12 @@
     import { recipes as _recipes } from "../../data/recipes.svelte";
     import { trials as _past_trials } from "../../data/trials.svelte";
 
-    /**
-     * 
-
-     * 
-    */
-
-    /**
-     * 
-     * "recipes" = [
-     *  "112233",
-     *  "112244",
-     *  "112255",
-     * ]
-     * 
-     * 
-    */
+    // data
 
     let trialsText = "";
     let trialsPlaceholderText = `51A311\n41A311\n31A311`;
     let recipes:any = [];
     
-    //let outputText = "";
     let outputList:{value:string, fullMatches:number}[] = [];
     let matchesCount = 0;
 
@@ -86,7 +70,6 @@
 
     onMount( async () => {
         recipes = _recipes;
-        //console.log(recipes);
     });
 
 
@@ -101,10 +84,6 @@
         outputList = matches;
 
         console.log("matches", matches);
-
-        /*outputText = matches.reduce((a,b) => 
-            `${a}${b.value} (full-matches:${b.fullMatches})` + "\n", 
-        "");*/
     }
 
 
@@ -139,9 +118,6 @@
                     if (_past_trials[j] == _trials[i]) matchesCount2++;
    
                 }
-
-                // output the trials that match
-                //matches.push(_trials[i] + ` (full-matches:${matchesCount2}) `);
 
                 matches.push({
                     value: _trials[i],

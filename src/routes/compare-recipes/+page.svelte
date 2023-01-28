@@ -48,22 +48,7 @@
     import { recipes as _recipes } from "../../data/recipes.svelte";
     import { trials, trials as _past_trials } from "../../data/trials.svelte";
 
-    /**
-     * 
-
-     * 
-    */
-
-    /**
-     * 
-     * "recipes" = [
-     *  "112233",
-     *  "112244",
-     *  "112255",
-     * ]
-     * 
-     * 
-    */
+    // data
 
     let trialsText = "";
     let trialsPlaceholderText = `51A311\n41A311\n31A311`;
@@ -81,7 +66,6 @@
 
     onMount( async () => {
         recipes = _recipes;
-        //console.log(recipes);
     });
 
 
