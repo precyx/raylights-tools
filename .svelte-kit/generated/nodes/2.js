@@ -1,1 +1,0 @@
-export { default as component } from "../../../src/routes/compare-past-trials/+page.svelte";
