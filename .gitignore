@@ -2,3 +2,4 @@
 /.svelte-kit/
 .DS_Store
 .env
+build
