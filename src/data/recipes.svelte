@@ -10,7 +10,7 @@ export let demo_trials = [
     ];
 
     export let recipes = [
-
+        
         "634436",
         "654456",
         "684486",
@@ -62,6 +62,7 @@ export let demo_trials = [
         "234432",
         "571375",
         "414AAA",
+        "8B81B0",
         "133331",
         "138831",
         "130031",
