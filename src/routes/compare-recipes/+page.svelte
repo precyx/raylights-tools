@@ -18,6 +18,17 @@
                 <span> ({trialsEntriesCount})</span>
             </div>
             <textarea name="trials" placeholder={trialsPlaceholderText} cols="30" rows="10" bind:value={trialsText} />
+            <div class="settingsBox">
+                <label for="numberOfMatches">Number of Matches</label>            
+                <div>
+
+                    {#each settings_numberOfMatchesOptions as item}
+                        <button class="tabButton" class:active={settings_numberOfMatches==item} on:click={() => setSettingsNumberOfMatches(item)}>
+                            {item}
+                        </button>
+                    {/each}                    
+                </div>
+            </div>
             <button class="btn compareMatchingRecpies" on:click={() => {clickCompareRecipes()}}> Compare with Found Recipes</button>
         </div>
 
@@ -57,6 +68,11 @@
     let outputList:{value:string, value2:string, charMatches:number}[] = [];
     let matchesCount = 0;
 
+    
+    let settings_numberOfMatchesOptions = ["456", "3", "4", "5", "6", "3456"];
+    let settings_numberOfMatches:string = "456";
+    $: settings_numberOfMatchesArray = settings_numberOfMatches.split("").map((item) => parseInt(item));
+
     // reacitiviy
     
     $: trialsEntriesCount = calculateNumberOfLines(trialsText);
@@ -85,6 +101,10 @@
 
 
     /** Functions */
+
+    const setSettingsNumberOfMatches = (value:string) => {
+        settings_numberOfMatches = value;
+    }
 
     /**
      * calculate the number of lines in a text
@@ -115,7 +135,7 @@
 
     /**
      * take 2 lists "recipes" and "trials", each list contains 6-digit-strings
-     * compare both lists and check if 4 of 6 digits are matching position and value 
+     * compare both lists and check if X of 6 digits are matching position and value 
      * return a list of strings with the matching trials
      */
     const compareRecipes = (_trials:string[], _recipes:string[]) => {
@@ -136,7 +156,7 @@
                     if(isMatch) break;
 
                     let numberOfMatches = compareCodes(_trials[i], _recipes[j]);
-                    if (numberOfMatches >= 4) {
+                    if (settings_numberOfMatchesArray.includes(numberOfMatches)) {
     
                         // output the trials that match
                         matches.push({
@@ -173,12 +193,28 @@
 
 <style>
 
-* {
+    
+
+
+    * {
         font-family: Arial;
     }
 
     h1 {
         margin:0;
+    }
+
+    label {
+        color: grey;
+        font-size: 12px;
+    }
+
+    .settingsBox {
+        margin:3px 0;
+    }
+    .settingsBox label {
+        display: block;
+        margin-bottom: 5px;
     }
 
     .leftBox {
@@ -292,6 +328,25 @@
     .area1, .area2 {
         width:100%;
     }
+
+    .tabButton {
+        /* style as a small pressable button */
+        /* use a soft secondary color */
+        background-color: #f2f2f2;
+        color: #000;
+        padding: 5px 10px;
+        margin-right: 8px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .tabButton:hover {
+        background-color: #ddd;
+    }
+    .tabButton.active {
+        background-color: #ccc;
+    }
+
 
 </style>
 
