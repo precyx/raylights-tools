@@ -2,7 +2,14 @@
 <div class="layout"> 
 
     <div class="leftBox">
-        <div class="miniTitle">Found Recipes ({foundRecipesCount})</div>
+        <div class="miniTitle">Found Recipes ({foundRecipesCount})</div> 
+        <div>
+            {#each settings_recipeTypes as item}
+                <button class="tabButton" class:active={settings_recipeType==item} on:click={() => setSettingsRecipeType(item)}>
+                    {item}
+                </button>
+            {/each}                    
+        </div>
         <div class="content">
             {foundRecipesText}
         </div>
@@ -21,7 +28,6 @@
             <div class="settingsBox">
                 <label for="numberOfMatches">Number of Matches</label>            
                 <div>
-
                     {#each settings_numberOfMatchesOptions as item}
                         <button class="tabButton" class:active={settings_numberOfMatches==item} on:click={() => setSettingsNumberOfMatches(item)}>
                             {item}
@@ -29,7 +35,9 @@
                     {/each}                    
                 </div>
             </div>
-            <button class="btn compareMatchingRecpies" on:click={() => {clickCompareRecipes()}}> Compare with Found Recipes</button>
+            <div class="buttonBox">
+                <button class="btn compareMatchingRecpies" on:click={() => {clickCompareRecipes()}}> Compare Recipes</button>
+            </div>
         </div>
 
         <div class="area2">
@@ -56,7 +64,7 @@
 <script lang="ts">
 
     import { onMount } from "svelte";
-    import { recipes as _recipes } from "../../data/recipes.svelte";
+    import { recipes_6, recipes_5, recipes_4, recipes_3 } from "../../data/recipes.svelte";
     import { trials, trials as _past_trials } from "../../data/trials.svelte";
 
     // data
@@ -69,19 +77,22 @@
     let matchesCount = 0;
 
     
-    let settings_numberOfMatchesOptions = ["456", "3", "4", "5", "6", "3456"];
+    let settings_numberOfMatchesOptions = ["456", "3", "4", "5", "6", "3456", "23", "2"];
     let settings_numberOfMatches:string = "456";
     $: settings_numberOfMatchesArray = settings_numberOfMatches.split("").map((item) => parseInt(item));
+    let settings_recipeTypes = ["3", "4", "5", "6"]
+    let settings_recipeType = "6";
+    let settings_recipeArrays = [recipes_3, recipes_4, recipes_5, recipes_6];
 
     // reacitiviy
     
     $: trialsEntriesCount = calculateNumberOfLines(trialsText);
-    $: foundRecipesText = _recipes.join("\n");
-    $: foundRecipesCount = _recipes.length;
+    $: foundRecipesText = recipes.join("\n");
+    $: foundRecipesCount = recipes.length;
 
 
     onMount( async () => {
-        recipes = _recipes;
+        recipes = recipes_6;
     });
 
 
@@ -104,6 +115,11 @@
 
     const setSettingsNumberOfMatches = (value:string) => {
         settings_numberOfMatches = value;
+    }
+
+    const setSettingsRecipeType = (value:string) => {
+        settings_recipeType = value;
+        recipes = settings_recipeArrays[settings_recipeTypes.indexOf(value)];
     }
 
     /**
@@ -211,6 +227,9 @@
 
     .settingsBox {
         margin:3px 0;
+        background: #f2f2f2;
+        padding: 8px;
+        border-radius: 6px;
     }
     .settingsBox label {
         display: block;
@@ -228,7 +247,7 @@
         height:85vh;
         overflow-y:scroll;
         white-space: pre-wrap;
-        
+        margin-top:5px;
     }
     
 
@@ -262,26 +281,29 @@
         font-family: monospace;
     }
     
+    .buttonBox {
+        margin-top:10px;
+        display:flex;
+    }
 
     .btn {
-        width: 100%;
-        height: 50px;
+        height: 45px;
         background-color: #000;
         color: #fff;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-
-        /* style this button as a nice round blue submit button */
         background-color: #397ebf;
         color: white;
-        padding: 14px 20px;
+        padding: 14px 32px;
         margin: 8px 0;
         border: none;
         border-radius: 4px;
         cursor: pointer;
-
-        margin-top: 10px;
+        box-sizing: bo;
+        margin: 0 auto;
+        border-radius: 50px;
+        font-size: 14px;
     }
     .btn:hover {
         background:#3497f4;
@@ -327,6 +349,11 @@
 
     .area1, .area2 {
         width:100%;
+    }
+
+    textarea {
+        border: 1px solid #acacac;
+        border-radius: 6px;
     }
 
     .tabButton {
