@@ -77,7 +77,7 @@
     let matchesCount = 0;
 
     
-    let settings_numberOfMatchesOptions = ["456", "3", "4", "5", "6", "3456", "23", "2"];
+    let settings_numberOfMatchesOptions = ["345", "456", "3", "4", "5", "6", "3456", "2", "23"];
     let settings_numberOfMatches:string = "456";
     $: settings_numberOfMatchesArray = settings_numberOfMatches.split("").map((item) => parseInt(item));
     let settings_recipeTypes = ["3", "4", "5", "6"]
