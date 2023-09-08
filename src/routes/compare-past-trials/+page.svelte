@@ -47,7 +47,7 @@
 <script lang="ts">
 
     import { onMount } from "svelte";
-    import { recipes as _recipes } from "../../data/recipes.svelte";
+    import { recipes_6 as _recipes } from "../../data/recipes.svelte";
     import { trials as _past_trials } from "../../data/trials.svelte";
 
     // data
