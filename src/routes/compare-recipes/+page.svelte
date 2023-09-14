@@ -1,7 +1,10 @@
+<div class="ui_bar">
+    <div class="bar_button" on:click={() => { sidebarInvisibleMobile = !sidebarInvisibleMobile;  }}>T</div>
+</div>
 
 <div class="layout"> 
 
-    <div class="leftBox">
+    <div class="leftBox" class:invisible={sidebarInvisibleMobile}>
         <div class="miniTitle">Found Recipes ({foundRecipesCount})</div> 
         <div>
             {#each settings_recipeTypes as item}
@@ -75,6 +78,8 @@
     
     let outputList:{value:string, value2:string, charMatches:number}[] = [];
     let matchesCount = 0;
+
+    let sidebarInvisibleMobile = true;
 
     
     let settings_numberOfMatchesOptions = ["345", "456", "3", "4", "5", "6", "3456", "2", "23"];
@@ -225,6 +230,27 @@
         font-size: 12px;
     }
 
+    .ui_bar {
+        display:flex;
+        opacity: 0;
+        height: 35px;
+        align-items: center;
+    }
+    .bar_button {
+        height: 25px;
+        width: 25px;
+        border-radius: 3px;
+        background: grey;
+        margin-left: 15px;
+
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+
+        background: #e8e8e8;
+    }
+
     .settingsBox {
         margin:3px 0;
         background: #f2f2f2;
@@ -238,7 +264,6 @@
 
     .leftBox {
         width: 250px;
-        margin-left: -270px;
         padding-right:20px;
     }
 
@@ -255,14 +280,12 @@
         display: flex;
         flex-direction:row;
         align-items: start;
-        justify-content: center;
 
-        padding-top:10px;
-        
-        width:950px;
         margin:0 auto;
         margin-top:20px;
-        
+
+        padding: 0 15px;
+        padding-top:10px;
     }
 
     .box {
@@ -270,7 +293,10 @@
         display: flex;
         flex-flow: column;
         align-items: center;
-        justify-content: center;
+
+        margin: 0 auto;
+        position: relative;
+        left: -125px;
     }
 
     textarea {
@@ -372,6 +398,30 @@
     }
     .tabButton.active {
         background-color: #ccc;
+    }
+
+
+
+    @media screen and (max-width: 1030px) {
+
+        .ui_bar {
+            opacity: 100%;
+        }
+
+        .leftBox {
+            position: absolute;
+            background:white;
+            z-index:1;
+            display:block;
+        }
+        .leftBox.invisible {
+            display:none;
+        }
+
+        .box{
+            margin: 0 auto;
+            left: auto;
+        }
     }
 
 

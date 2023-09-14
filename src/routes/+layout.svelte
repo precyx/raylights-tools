@@ -12,6 +12,12 @@
 
 
   <style>
+    nav {
+        display: flex;
+        background: #ebebeb;
+        padding: 8px 0;
+    }
+
     a {
         font-family: arial;
         padding:8px 15px;
@@ -21,4 +27,6 @@
     a:hover {
         color:#000;
     }
+
+    
   </style>
